@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up & Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .top-bar {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        .top-bar button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .dragon {
+            position: full;
+            top: 100%;
+            left: 100%;
+            width: 1000px;
+            height: 500px;
+            background: url('https://media.istockphoto.com/id/1159980027/vector/dragon-head-on-stone-background.jpg?s=612x612&w=0&k=20&c=dV6D2ifebCoue-wrZyYNYQV9xaXB6fAg0eSze246dZ0=') no-repeat center/cover;
+            
+        }
+        @keyframes rotateDragon {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        .container {
+            position: absolute;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            width: 300px;
+        }
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 80%;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background: red;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <button onclick="showLogin()">Sign In</button>
+    </div>
+    <div class="dragon"></div>
+    
+    <div id="signup-page" class="container">
+        <h2>Sign Up</h2>
+        <input type="text" placeholder="Full Name" id="signup-name" required>
+        <input type="text" placeholder="Phone Number Or Email Id" id="signup-phone" required>
+        <input type="password" placeholder="Password" id="signup-password" required>
+        <button onclick="goToLogin()">Sign Up</button>
+    </div>
+
+    <div id="login-page" class="container hidden">
+        <h2>Login</h2>
+        <input type="text" placeholder="Phone Number or Email Id" id="login-phone" required>
+        <input type="password" placeholder="Password" id="login-password" required>
+        <button onclick="login()">Login</button>
+        <p><a href="demon.html" onclick="forgotPassword()" style="color: white;">Forgot Password?</a></p>
+    </div>
+
+    <script>
+        function goToLogin() {
+            document.getElementById("signup-page").classList.add("hidden");
+            document.getElementById("login-page").classList.remove("hidden");
+        }
+
+        function showLogin() {
+            document.getElementById("signup-page").classList.add("hidden");
+            document.getElementById("login-page").classList.remove("hidden");
+        }
+
+        function login() {
+            alert("Login Clicked (Backend needed for authentication)");
+        }
+
+        function forgotPassword() {
+            let phone = prompt("Enter your phone number for OTP verification:");
+            if (phone) {
+                let otp = Math.floor(1000 + Math.random() * 9000);
+                alert("Your OTP is: " + otp); // Replace with actual OTP service
+                let enteredOtp = prompt("Enter OTP:");
+                if (enteredOtp == otp) {
+                    alert("OTP Verified. Redirecting to reset page.");
+                } else {
+                    alert("Invalid OTP. Try again.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
